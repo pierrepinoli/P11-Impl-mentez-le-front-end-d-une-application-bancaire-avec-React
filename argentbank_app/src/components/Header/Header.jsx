@@ -6,7 +6,7 @@ function Header() {
     return (
         <header>
             <nav className="main-nav">   
-                <NavLink to="/Home">
+                <NavLink to="/">
                     <div className="main-nav-logo">
                         <img
                         className="main-nav-logo-image"
@@ -24,7 +24,7 @@ function Header() {
                             Tony
                         </div>
                     </NavLink>
-                    <NavLink to="/Home">
+                    <NavLink to="/">
                         <div className="main-nav-item">
                             <i className="fa fa-sign-out"></i>
                             Sign Out
