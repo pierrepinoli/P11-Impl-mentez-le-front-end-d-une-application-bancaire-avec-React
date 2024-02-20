@@ -1,20 +1,18 @@
-// import './home.scss';
+import Banner from '../../components/Banner/Banner.jsx';
+import Cards from '../../components/Cards/Cards.jsx';
+
+import './home.scss';
 
 function Home() {
     return ( 
         <main>
-            <div className="hero">
-                <section className="hero-content">
-                    <h2 className="sr-only">Promoted Content</h2>
-                        <p className="subtitle">No fees.</p>
-                        <p className="subtitle">No minimum deposit.</p>
-                        <p className="subtitle">High interest rates.</p>
-                        <p className="text">Open a savings account with Argent Bank today!</p>
-                </section>
-            </div>
+            <Banner />
                 <section className="features">
                     <h2 className="sr-only">Features</h2>
-                        <div className="feature-item">
+                        <Cards />
+                        <Cards />
+                        <Cards />
+                        {/* <div className="feature-item">
                         <img src="./img/icon-chat.png" alt="Chat Icon" className="feature-icon" />
                         <h3 className="feature-item-title">You are our #1 priority</h3>
                         <p>
@@ -44,7 +42,7 @@ function Home() {
                             We use top of the line encryption to make sure your data and money
                             is always safe.
                         </p>
-                </div>
+                </div> */}
             </section>
         </main>
     );

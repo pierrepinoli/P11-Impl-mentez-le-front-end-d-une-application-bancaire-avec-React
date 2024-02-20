@@ -9,7 +9,6 @@ import Footer from "./components/Footer/Footer.jsx";
 
 function App() {
   return (
-    
        <Router>
           <Header />
           <Routes>
@@ -19,7 +18,6 @@ function App() {
           </Routes>
           <Footer />
         </Router>
-    
   );
 }
 export default App;

@@ -1,4 +1,4 @@
-// import './user.scss';
+import './user.scss';
 
 function User() {
     return ( 
