@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import ArgentBankLogo from '../../assets/img/argentBankLogo.png'
+import ArgentBankLogo from '../../assets/img/argentBankLogo.webp'
 
 import './header.scss';
 
@@ -25,6 +25,7 @@ function Header() {
                             Tony
                         </div>
                     </NavLink>
+                    
                     <NavLink to="/">
                         <div className="main-nav-item">
                             <i className="fa fa-sign-out"></i>
