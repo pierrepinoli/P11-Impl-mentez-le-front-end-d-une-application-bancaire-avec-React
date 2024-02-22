@@ -1,4 +1,4 @@
-import './user.scss';
+import './dashboard.scss';
 
 function User() {
     return ( 
