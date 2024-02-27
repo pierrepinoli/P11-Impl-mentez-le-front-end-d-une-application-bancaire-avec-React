@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import authReducer from './authReducer'; // Assurez-vous que le chemin est correct
+import authReducer from './authReducer';
 
 const rootReducer = combineReducers({
   auth: authReducer,
