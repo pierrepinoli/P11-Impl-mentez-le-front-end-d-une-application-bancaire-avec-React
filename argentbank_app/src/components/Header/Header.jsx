@@ -10,10 +10,9 @@ import './header.scss';
 function Header({ isConnected, logout }) {
   
   const handleLogout = () => {
+    // Déconnecter l'utilisateur lorsqu'il clique sur "Logout"
     logout();
   };
-
-  console.log("Header__isConnected:", isConnected); 
 
   return (
     <header>
@@ -30,21 +29,22 @@ function Header({ isConnected, logout }) {
         </NavLink>
 
         <div>
-          {/* questionne l'état de isConnected */}
+          {/* Vérifier si l'utilisateur est connecté */}
           {isConnected ? (
             <>
-              <NavLink to="/dashboard">
-                <div className="main-nav-item">
-                  <i className="fa fa-user-circle"></i>
-                  Tony 
-                </div>
-              </NavLink>
+              {/* Afficher le nom de l'utilisateur */}
+              <div className="main-nav-item">
+                <i className="fa fa-user-circle"></i>
+                Tony 
+              </div>
+              {/* Bouton de déconnexion */}
               <div className="main-nav-item" onClick={handleLogout}>
                 <i className="fa fa-sign-out"></i>
-                Sign out
+                Logout
               </div>
             </>
           ) : (
+            // Si l'utilisateur n'est pas connecté, afficher le lien de connexion
             <NavLink to="/sign-in">
               <div className="main-nav-item">
                 <i className="fa fa-sign-in"></i>
@@ -57,6 +57,7 @@ function Header({ isConnected, logout }) {
     </header>
   );
 }
+
 
 // vérifie l'état de isLoggedIn : si state.auth est undefined, alors isLoggedIn sera défini sur false
 const mapStateToProps = (state) => ({

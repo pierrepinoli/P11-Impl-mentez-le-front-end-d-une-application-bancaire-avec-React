@@ -1,6 +1,8 @@
 import './dashboard.scss';
 
-function User() {
+
+function User({ isConnected }) {
+  console.log("Dashboard__isConnected:", isConnected);
     return ( 
         <main className="main bg-dark">
           <div className="header">

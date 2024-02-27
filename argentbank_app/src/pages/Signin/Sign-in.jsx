@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { login } from '../../redux/Actions/authActions';
-import { useNavigate } from 'react-router-dom'; // Import de useNavigate
+import { useNavigate } from 'react-router-dom';
 import './sign-in.scss';
 
 function Signin({ login }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate(); // Utilisation de useNavigate pour la redirection
+
+  // Utilisation de useNavigate pour la redirection
+  const navigate = useNavigate(); 
 
   const handleSignin = (e) => {
     e.preventDefault();
 
     if (username === 'utilisateur' && password === 'motdepasse') {
       login();
-      navigate('/dashboard'); // Redirection vers /dashboard après l'authentification réussie
+      // Redirection vers /dashboard après l'authentification réussie
+      navigate('/dashboard'); 
     } else {
       console.log('Authentification échouée');
     }
