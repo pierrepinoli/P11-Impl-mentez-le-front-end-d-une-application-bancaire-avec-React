@@ -1,22 +1,30 @@
 const initialState = {
-   isConnected: false,
-  };
-  
-  const authReducer = (state = initialState, action) => {
-    console.log("Initial state:", state); // Vérifiez l'état initial dans la console
-    switch (action.type) {
-      case 'LOGIN':
-        return {
-          ...state,
-          isConnected: true,
-        };
-      case 'LOGOUT':
-        return {
-          ...state,
-          isConnected: false,
-        };
-      default:
-        return state;
-    }
-  };
-  export default authReducer;
+  isConnected: false,
+ 
+};
+
+const authReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'LOGIN':
+      return {
+        ...state,
+        isConnected: true,
+        // Autres traitements pour la connexion
+      };
+    case 'LOGOUT':
+      return {
+        ...state,
+        isConnected: false,
+        // Autres traitements pour la déconnexion
+      };
+    case 'SET_CONNECTED':
+      return {
+        ...state,
+        isConnected: true,
+      };
+    default:
+      return state;
+  }
+};
+
+export default authReducer;

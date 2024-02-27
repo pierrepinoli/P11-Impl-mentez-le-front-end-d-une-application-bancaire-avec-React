@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { login } from '../../redux/Actions/authActions';
+import { setConnected } from '../../redux/Actions/authActions';
 import { useNavigate } from 'react-router-dom';
 import './sign-in.scss';
 
@@ -16,6 +17,7 @@ function Signin({ login }) {
 
     if (username === 'utilisateur' && password === 'motdepasse') {
       login();
+      setConnected(); // Dispatch de l'action setConnected
       // Redirection vers /dashboard après l'authentification réussie
       navigate('/dashboard'); 
     } else {
