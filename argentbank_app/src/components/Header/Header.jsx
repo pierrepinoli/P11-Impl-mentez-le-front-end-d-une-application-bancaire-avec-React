@@ -6,12 +6,15 @@ import ArgentBankLogo from '../../assets/img/argentBankLogo.webp';
 
 import './header.scss';
 
-function Header({ isLoggedIn, logout }) {
+// la fonction Header prend deux propriétés en argument : isConnected et logout .
+function Header({ isConnected, logout }) {
   
   const handleLogout = () => {
     logout();
   };
-  console.log("Header__isLoggedIn:", isLoggedIn); 
+
+  console.log("Header__isConnected:", isConnected); 
+
   return (
     <header>
       <nav className="main-nav">
@@ -27,9 +30,10 @@ function Header({ isLoggedIn, logout }) {
         </NavLink>
 
         <div>
-          {isLoggedIn ? (
+          {/* questionne l'état de isConnected */}
+          {isConnected ? (
             <>
-              <NavLink to="/Dashboard">
+              <NavLink to="/dashboard">
                 <div className="main-nav-item">
                   <i className="fa fa-user-circle"></i>
                   Tony 
@@ -41,7 +45,7 @@ function Header({ isLoggedIn, logout }) {
               </div>
             </>
           ) : (
-            <NavLink to="/Signin">
+            <NavLink to="/sign-in">
               <div className="main-nav-item">
                 <i className="fa fa-sign-in"></i>
                 Sign in
@@ -54,8 +58,9 @@ function Header({ isLoggedIn, logout }) {
   );
 }
 
+// vérifie l'état de isLoggedIn : si state.auth est undefined, alors isLoggedIn sera défini sur false
 const mapStateToProps = (state) => ({
-  isLoggedIn: state.auth ? state.auth.isLoggedIn : false,
+  isConnected: state.auth ? state.auth.isConnected : false,
 });
 
 export default connect(mapStateToProps, { logout })(Header);

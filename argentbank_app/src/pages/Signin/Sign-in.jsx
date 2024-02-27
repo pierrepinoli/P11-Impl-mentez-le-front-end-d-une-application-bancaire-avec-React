@@ -1,25 +1,21 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { login } from '../../redux/Actions/authActions';
+import { useNavigate } from 'react-router-dom'; // Import de useNavigate
+import './sign-in.scss';
 
-import './signin.scss';
-
-function SignIn({ login }) {
+function Signin({ login }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  
+  const navigate = useNavigate(); // Utilisation de useNavigate pour la redirection
 
-  // ***************** TEMPORAIRE *****************
-  const handleSignIn = (e) => {
+  const handleSignin = (e) => {
     e.preventDefault();
-    
-    // Vérifiez ici les informations d'identification
-    // Par exemple, si username et password correspondent à des valeurs prédéfinies
+
     if (username === 'utilisateur' && password === 'motdepasse') {
-      // Authentification réussie, mettez à jour l'état de connexion
       login();
+      navigate('/dashboard'); // Redirection vers /dashboard après l'authentification réussie
     } else {
-      // Affichez un message d'erreur ou effectuez une autre action en cas d'échec de l'authentification
       console.log('Authentification échouée');
     }
   };
@@ -29,7 +25,7 @@ function SignIn({ login }) {
       <section className="sign-in-content">
         <i className="fa fa-user-circle sign-in-icon"></i>
         <h1>Sign In</h1>
-        <form onSubmit={handleSignIn}>
+        <form onSubmit={handleSignin}>
           <div className="input-wrapper">
             <label htmlFor="username">Username</label>
             <input 
@@ -55,4 +51,9 @@ function SignIn({ login }) {
   );
 }
 
-export default connect(null, { login })(SignIn);
+// vérifie l'état de isLoggedIn : si state.auth est undefined, alors isLoggedIn sera défini sur false
+const mapStateToProps = (state) => ({
+  isConnected: state.auth ? state.auth.isConnected : false,
+});
+
+export default connect(mapStateToProps, { login })(Signin);

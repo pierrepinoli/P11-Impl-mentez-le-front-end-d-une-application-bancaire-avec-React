@@ -1,27 +1,36 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { logout } from './redux/Actions/authActions';
 
 import Home from "./pages/Home/Home.jsx";
-import Signin from "./pages/Signin/Signin.jsx";
+import Signin from "./pages/Signin/Sign-in.jsx";
 import Dashboard from "./pages/Dashboard/Dashboard.jsx";
 import Error from "./pages/Error/Error.jsx";
 
 import Header from "./components/Header/Header.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 
-function App({ isLoggedIn }) {
-  console.log("App__isLoggedIn:", isLoggedIn); 
+function App({ isConnected }) {
+  console.log("App__isConnected:", isConnected); 
   return (
     <Router>
-      <Header />
+      <Header isConnected={isConnected} logout={logout} />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/Signin" element={<Signin />} />
-        <Route path="/Dashboard" element={<Dashboard />} />
+        <Route path="/sign-in" element={<Signin />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="*" element={<Error />} />
       </Routes>
       <Footer />
     </Router>
   );
 }
-export default App;
+
+// vérifie l'état de isLoggedIn : si state.auth est undefined, alors isLoggedIn sera défini sur false
+const mapStateToProps = (state) => ({
+  isConnected: state.auth ? state.auth.isConnected : false,
+});
+
+export default connect(mapStateToProps, { logout })(App);
