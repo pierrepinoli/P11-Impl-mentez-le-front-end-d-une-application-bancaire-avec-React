@@ -1,30 +1,25 @@
+import { createReducer } from '@reduxjs/toolkit';
+import { login, logout, logfail } from '../Actions/authActions';
+
 const initialState = {
   isConnected: false,
- 
+  status: null,
 };
 
-const authReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'LOGIN':
-      return {
-        ...state,
-        isConnected: true,
-        // Autres traitements pour la connexion
-      };
-    case 'LOGOUT':
-      return {
-        ...state,
-        isConnected: false,
-        // Autres traitements pour la déconnexion
-      };
-    case 'SET_CONNECTED':
-      return {
-        ...state,
-        isConnected: true,
-      };
-    default:
-      return state;
-  }
-};
+const authReducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase(login, (state) => {
+      state.isConnected = true;
+      state.status = "SUCCEEDED";
+    })
+    .addCase(logout, (state) => {
+      state.isConnected = false;
+      state.status = null;
+    })
+    .addCase(logfail, (state) => {
+      state.isConnected = false;
+      state.status = "FAILED";
+    });
+});
 
 export default authReducer;

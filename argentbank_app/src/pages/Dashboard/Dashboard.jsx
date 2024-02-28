@@ -1,10 +1,11 @@
+import React from 'react';
+import { connect } from 'react-redux';
 import './dashboard.scss';
 
-
-function User({ isConnected }) {
+function Dashboard({ isConnected }) {
   console.log("Dashboard__isConnected:", isConnected);
-    return ( 
-        <main className="main bg-dark">
+  return ( 
+    <main className="main bg-dark">
           <div className="header">
             <h1>Welcome back<br />Tony Jarvis!</h1>
             <button className="edit-button">Edit Name</button>
@@ -41,7 +42,12 @@ function User({ isConnected }) {
             </div>
           </section>
         </main>
-    );
+  );
 }
 
-export default User;
+// Mapper l'état Redux à des props pour le composant Dashboard
+const mapStateToProps = (state) => ({
+  isConnected: state.auth ? state.auth.isConnected : false,
+});
+
+export default connect(mapStateToProps)(Dashboard);

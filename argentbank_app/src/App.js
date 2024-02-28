@@ -28,7 +28,7 @@ function App({ isConnected }) {
   );
 }
 
-// vérifie l'état de isLoggedIn : si state.auth est undefined, alors isLoggedIn sera défini sur false
+// vérifie l'état de isConnected : si state.auth est undefined, alors isConnected sera défini sur false
 const mapStateToProps = (state) => ({
   isConnected: state.auth ? state.auth.isConnected : false,
 });

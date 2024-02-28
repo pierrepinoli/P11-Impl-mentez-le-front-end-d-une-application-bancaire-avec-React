@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { login } from '../../redux/Actions/authActions';
-import { setConnected } from '../../redux/Actions/authActions';
 import { useNavigate } from 'react-router-dom';
 import './sign-in.scss';
 
@@ -15,9 +14,8 @@ function Signin({ login }) {
   const handleSignin = (e) => {
     e.preventDefault();
 
-    if (username === 'utilisateur' && password === 'motdepasse') {
+    if (username === 'admin' && password === '123') {
       login();
-      setConnected(); // Dispatch de l'action setConnected
       // Redirection vers /dashboard après l'authentification réussie
       navigate('/dashboard'); 
     } else {
@@ -56,9 +54,4 @@ function Signin({ login }) {
   );
 }
 
-// vérifie l'état de isLoggedIn : si state.auth est undefined, alors isLoggedIn sera défini sur false
-const mapStateToProps = (state) => ({
-  isConnected: state.auth ? state.auth.isConnected : false,
-});
-
-export default connect(mapStateToProps, { login })(Signin);
+export default connect(null, { login })(Signin);
