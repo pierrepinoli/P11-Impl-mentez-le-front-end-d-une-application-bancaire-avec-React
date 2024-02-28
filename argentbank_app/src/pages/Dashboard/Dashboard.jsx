@@ -1,10 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Navigate } from 'react-router-dom'; 
 import './dashboard.scss';
 
 function Dashboard({ isConnected }) {
   console.log("Dashboard__isConnected:", isConnected);
-  return ( 
+
+  // Si l'utilisateur n'est pas connecté, redirigez-le vers la page d'accueil
+  return !isConnected ? <Navigate to="/" /> : (
     <main className="main bg-dark">
           <div className="header">
             <h1>Welcome back<br />Tony Jarvis!</h1>
