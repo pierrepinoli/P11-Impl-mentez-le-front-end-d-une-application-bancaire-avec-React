@@ -1,9 +1,11 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { login, logout, logfail } from '../Actions/authActions';
+import { login, logout, logfail, setRememberMe } from '../Actions/authActions';
 
+// Etat initial des états
 const initialState = {
   isConnected: false,
   status: null,
+  rememberMe: false, 
 };
 
 const authReducer = createReducer(initialState, (builder) => {
@@ -19,6 +21,11 @@ const authReducer = createReducer(initialState, (builder) => {
     .addCase(logfail, (state) => {
       state.isConnected = false;
       state.status = "FAILED";
+    })
+    .addCase(setRememberMe, (state, action) => {
+      
+      // Met à jour rememberMe selon l'action payload
+      state.rememberMe = action.payload; 
     });
 });
 

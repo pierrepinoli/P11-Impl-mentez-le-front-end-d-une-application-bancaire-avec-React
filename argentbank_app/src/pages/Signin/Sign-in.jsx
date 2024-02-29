@@ -1,26 +1,45 @@
-import React, { useState } from 'react';
+// SignIn.js
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { login } from '../../redux/Actions/authActions';
+import { login, setRememberMe } from '../../redux/Actions/authActions';
 import { useNavigate } from 'react-router-dom';
-import './sign-in.scss';
+import './signin.scss';
 
-function Signin({ login }) {
+function Signin({ login, setRememberMe, rememberMe }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
-  // État pour "Remember Me"
-  const [rememberMe, setRememberMe] = useState(false); 
 
   // Utilisation de useNavigate pour la redirection
   const navigate = useNavigate(); 
 
-  const handleSignin = (e) => {
+  useEffect(() => {
+    // Récupére les valeurs du localStorage si "Remember Me" est vrai dans le state
+    if (rememberMe) {
+      const storedUsername = localStorage.getItem('username');
+      const storedPassword = localStorage.getItem('password');
+      if (storedUsername && storedPassword) {
+        setUsername(storedUsername);
+        setPassword(storedPassword);
+      }
+    }
+  }, [rememberMe]);
+
+  const handleSignIn = (e) => {
     e.preventDefault();
 
     if (username === 'admin' && password === '123') {
       login();
       // Redirection vers /dashboard après l'authentification réussie
       navigate('/dashboard'); 
+      // Met à jour le "Remember Me" dans le state si coché
+      if (rememberMe) {
+        localStorage.setItem('username', username);
+        localStorage.setItem('password', password);
+      } else {
+        // Si "Remember Me" n'est pas coché, efface les données du localStorage
+        localStorage.removeItem('username');
+        localStorage.removeItem('password');
+      }
     } else {
       console.log('Authentification échouée');
     }
@@ -31,7 +50,7 @@ function Signin({ login }) {
       <section className="sign-in-content">
         <i className="fa fa-user-circle sign-in-icon"></i>
         <h1>Sign In</h1>
-        <form onSubmit={handleSignin}>
+        <form onSubmit={handleSignIn}>
           <div className="input-wrapper">
             <label htmlFor="username">Username</label>
             <input 
@@ -55,7 +74,7 @@ function Signin({ login }) {
               type="checkbox" 
               id="remember-me" 
               checked={rememberMe} 
-              onChange={(e) => setRememberMe(e.target.checked)} 
+              onChange={() => setRememberMe(!rememberMe)} 
             />
             <label htmlFor="remember-me">Remember Me</label>
           </div>
@@ -66,4 +85,8 @@ function Signin({ login }) {
   );
 }
 
-export default connect(null, { login })(Signin);
+const mapStateToProps = (state) => ({
+  rememberMe: state.auth.rememberMe,
+});
+
+export default connect(mapStateToProps, { login, setRememberMe })(Signin);

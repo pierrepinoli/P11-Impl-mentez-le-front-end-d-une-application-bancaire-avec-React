@@ -1,6 +1,7 @@
+// Header.js
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { logout } from '../../redux/Actions/authActions';
 import ArgentBankLogo from '../../assets/img/argentBankLogo.webp';
 
@@ -9,15 +10,26 @@ import './header.scss';
 function Header() {
   const isConnected = useSelector(state => state.auth.isConnected); 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch(logout());
   };
 
+  const handleLogoClick = () => {
+    if (isConnected) {
+      // Si l'utilisateur est connecté et qu'il clique sur le logo, déconnectez-le
+      // et redirigez-le vers la page d'accueil
+      handleLogout();
+      navigate('/');
+      console.log("Dashboard__isConnected", isConnected);
+    }
+  };
+
   return (
     <header>
       <nav className="main-nav">
-        <NavLink to="/">
+        <NavLink to="/" onClick={handleLogoClick}>
           <div className="main-nav-logo">
             <img
               className="main-nav-logo-image"
@@ -55,10 +67,3 @@ function Header() {
 }
 
 export default Header;
-
-// // vérifie l'état de isLoggedIn : si state.auth est undefined, alors isLoggedIn sera défini sur false
-// const mapStateToProps = (state) => ({
-//   isConnected: state.auth ? state.auth.isConnected : false,
-// });
-
-
