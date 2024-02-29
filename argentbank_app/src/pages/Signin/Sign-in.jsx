@@ -8,6 +8,9 @@ function Signin({ login }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  // État pour "Remember Me"
+  const [rememberMe, setRememberMe] = useState(false); 
+
   // Utilisation de useNavigate pour la redirection
   const navigate = useNavigate(); 
 
@@ -46,6 +49,15 @@ function Signin({ login }) {
               value={password} 
               onChange={(e) => setPassword(e.target.value)} 
             />
+          </div>
+          <div>
+            <input 
+              type="checkbox" 
+              id="remember-me" 
+              checked={rememberMe} 
+              onChange={(e) => setRememberMe(e.target.checked)} 
+            />
+            <label htmlFor="remember-me">Remember Me</label>
           </div>
           <button type="submit" className="sign-in-button">Sign In</button>
         </form>
