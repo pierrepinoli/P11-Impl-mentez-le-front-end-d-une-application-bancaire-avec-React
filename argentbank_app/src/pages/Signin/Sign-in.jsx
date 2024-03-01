@@ -49,7 +49,7 @@ function Signin({ login, setRememberMe, rememberMe }) {
     <main className="main bg-dark">
       <section className="sign-in-content">
         <i className="fa fa-user-circle sign-in-icon"></i>
-        <h1>Sign In</h1>
+        <h2>Sign In</h2>
         <form onSubmit={handleSignIn}>
           <div className="input-wrapper">
             <label htmlFor="username">Username</label>
@@ -69,14 +69,15 @@ function Signin({ login, setRememberMe, rememberMe }) {
               onChange={(e) => setPassword(e.target.value)} 
             />
           </div>
-          <div>
+          <div className="input-rememberme">
             <input 
+              className="input-checkbox"
               type="checkbox" 
               id="remember-me" 
               checked={rememberMe} 
               onChange={() => setRememberMe(!rememberMe)} 
             />
-            <label htmlFor="remember-me">Remember Me</label>
+            <label htmlFor="remember-me">Remember me</label>
           </div>
           <button type="submit" className="sign-in-button">Sign In</button>
         </form>

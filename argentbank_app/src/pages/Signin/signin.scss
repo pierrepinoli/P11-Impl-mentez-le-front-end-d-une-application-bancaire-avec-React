@@ -10,6 +10,11 @@
     color: #fff;
 }
 
+.sign-in-button:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .sign-in-content {
     box-sizing: border-box;
     background-color: white;
@@ -45,4 +50,18 @@
 .input-wrapper input {
     padding: 5px;
     font-size: 1.2rem;
+}
+
+.input-rememberme {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.input-checkbox {
+    transform: scale(1.2);
+}
+
+.input-checkbox:hover {
+    cursor: pointer;
 }

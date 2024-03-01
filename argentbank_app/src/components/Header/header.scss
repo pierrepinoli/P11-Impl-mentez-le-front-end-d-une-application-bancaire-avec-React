@@ -8,19 +8,30 @@
 .main-nav a {
     font-weight: bold;
     color: #2c3e50;
+    text-decoration: none;
 }
 
 .main-nav a.router-link-exact-active {
     color: #42b983;
 }
 
+.main-nav-menu {
+    display: flex;
+}
+
 .main-nav-item {
+    display: flex;
+    gap: 5px;
     text-decoration: none;
     margin-right: 0.5rem;
 }
 
-.main-nav-item:hover {
+.main-nav-item span:hover {
     text-decoration: underline;
+}
+
+.main-nav-item:hover {
+    cursor: pointer;
 }
 
 .main-nav-logo {
@@ -30,5 +41,5 @@
 
 .main-nav-logo-image {
     max-width: 100%;
-    width: 200px;
+    width: 150px;
 }

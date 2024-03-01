@@ -18,10 +18,12 @@ function Header() {
 
   const handleLogoClick = () => {
     if (isConnected) {
-      // Si l'utilisateur est connecté et qu'il clique sur le logo, déconnectez-le
-      // et redirigez-le vers la page d'accueil
+
+      // Si l'utilisateur est connecté et qu'il clique sur le logo, déconnection
+      // et redirection vers la page d'accueil
       handleLogout();
       navigate('/');
+
       console.log("Dashboard__isConnected", isConnected);
     }
   };
@@ -40,23 +42,23 @@ function Header() {
           </div>
         </NavLink>
 
-        <div>
+        <div className='main-nav-menu'>
           {isConnected ? (
             <>
               <div className="main-nav-item">
                 <i className="fa fa-user-circle"></i>
-                Tony
+                <span>Tony</span>
               </div>
               <div className="main-nav-item" onClick={handleLogout}>
                 <i className="fa fa-sign-out"></i>
-                Logout
+                <span>Logout</span>
               </div>
             </>
           ) : (
             <NavLink to="/sign-in">
               <div className="main-nav-item">
                 <i className="fa fa-sign-in"></i>
-                Sign in
+                <span>Sign in</span>
               </div>
             </NavLink>
           )}

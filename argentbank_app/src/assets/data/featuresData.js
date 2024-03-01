@@ -2,7 +2,6 @@ import iconChat from "../img/icon-chat.webp";
 import iconMoney from "../img/icon-money.webp";
 import iconSecurity from "../img/icon-security.webp";
 
-
 const featuresData = [
   {
     index: "1",
