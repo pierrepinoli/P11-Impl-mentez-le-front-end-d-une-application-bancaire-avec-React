@@ -10,6 +10,7 @@ function Signin({ login, logfail, logout }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [rememberChecked, setRememberChecked] = useState(false);
+  const [error, setError] = useState('');
 
 // Utilisation de useNavigate pour la redirection
   const navigate = useNavigate();
@@ -55,13 +56,18 @@ function Signin({ login, logfail, logout }) {
           localStorage.removeItem('username');
           localStorage.removeItem('password');
         }
-      } else {
-        console.error('Authentication failed');
-        logfail();
       }
     } catch (error) {
-      console.error('Authentication failed:', error);
-      logfail();
+      // Gestion de l'erreur 400 "utilisateur non trouvé"
+      if (error.response && error.response.status === 400) {
+        setError('Identifiants incorrects');
+        // Gestion de l'erreur 500 "Erreur interne du serveur"
+      } else if (error.response && error.response.status === 500) {
+        setError('Erreur interne du serveur. Veuillez réessayer plus tard.');
+      } else {
+        console.error('Authentication failed:', error);
+        logfail();
+      }
     }
   };
 
@@ -74,7 +80,7 @@ function Signin({ login, logfail, logout }) {
           <div className="input-wrapper">
             <label htmlFor="username">Username</label>
             <input 
-              type="text" 
+              type="email" 
               id="username" 
               value={username} 
               onChange={(e) => setUsername(e.target.value)} 
@@ -102,6 +108,8 @@ function Signin({ login, logfail, logout }) {
             <label htmlFor="remember-me">Remember me</label>
           </div>
           <button type="submit" className="sign-in-button">Sign In</button>
+          {/* Affichage de l'erreur */}
+          {error && <div className="input-error"><span className="input-error-txt">{error}</span></div>}
         </form>
       </section>
     </main>
