@@ -20,7 +20,7 @@ const editReducer = createReducer(initialState, (builder) => {
         state.status = "SUCCEEDED";
       })
       .addCase(logout, (state) => {
-        // Réinitialiser les données de l'utilisateur lors de la déconnexion
+        // Réinitialise les données de l'utilisateur lors de la déconnexion
         state.userData = {
           email: '',
           password: '',

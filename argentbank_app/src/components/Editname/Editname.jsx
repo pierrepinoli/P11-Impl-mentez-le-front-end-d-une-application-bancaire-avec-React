@@ -1,13 +1,42 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import Axios from 'axios';
+import { editUsername } from '../../redux/Actions/editActions';
 
 function Editname() {
-    // Obtenez les données de l'utilisateur depuis le state Redux
+    // cherche les données de l'utilisateur depuis le state Redux
     const userData = useSelector(state => state.edit.userData);
-    console.log (userData)
-    // Utilisez les données de l'utilisateur pour pré-remplir le champ de l'username
+    const dispatch = useDispatch();
+    // recuperation du token dans le sessions storage
+    const token = sessionStorage.getItem('token');
+    
+    // Utilise les données de l'utilisateur pour pré-remplir le champ de l'username
     const [username, setUsername] = useState(userData.userName || ''); // Utilisez une valeur vide par défaut si le nom d'utilisateur est null
   
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            // Effectuer la requête API PUT pour mettre à jour le nom d'utilisateur
+            await Axios.put(
+                'http://localhost:3001/api/v1/user/profile',
+                { userName: username },
+                {
+                    headers: {
+                        Authorization: token,
+                        'Content-Type': 'application/json'
+                    }
+                }
+            );
+
+            // Dispatchez l'action pour mettre à jour le nom d'utilisateur dans le state Redux
+            dispatch(editUsername({ userName: username }));
+
+            
+        } catch (error) {
+            console.error('Error updating username:', error);
+        }
+    };
 
     return (
         <section className="header">
@@ -18,7 +47,7 @@ function Editname() {
 
         <div className="editname-content">
 
-            <form> 
+            <form onSubmit={handleFormSubmit}> 
                 <div className="input-wrapper">
                     <label htmlFor="username">Username</label>
                     <input
