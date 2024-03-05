@@ -30,6 +30,7 @@ function Signin({ login, logfail, logout }) {
     }
   }, []);
 
+
   const handleSignIn = async (e) => {
     e.preventDefault();
 
@@ -42,6 +43,7 @@ function Signin({ login, logfail, logout }) {
       // Si la réponse est OK (status 200)
       if (response.status === 200) {
         const token = response.data.token;
+        console.log ("valeur token signin au fetch:" , token)
         // Dispatch l'action login avec le token
         login(token);
         // Redirection vers /dashboard après l'authentification réussie
@@ -56,6 +58,9 @@ function Signin({ login, logfail, logout }) {
           localStorage.removeItem('username');
           localStorage.removeItem('password');
         }
+         // Stocker le token dans le sessionStorage
+         sessionStorage.setItem('token', token);
+         console.log ("valeur token signin au stockage:" , token)
       }
     } catch (error) {
       // Gestion de l'erreur 400 "utilisateur non trouvé"
