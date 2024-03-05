@@ -17,7 +17,8 @@ function Dashboard({ isConnected }) {
     <main className="main bg-dark">
           
           <Editname />
-
+          
+          <section>
           <h3 className="sr-only">Accounts</h3>
           {accountsData.accountsdata.map((account) => (
             <Collapse 
@@ -26,7 +27,9 @@ function Dashboard({ isConnected }) {
               accountAmount={account.accountAmount} 
               accountDescription={account.accountDescription}
             />
+            
           ))}
+          </section>
     </main>
   );
 }
