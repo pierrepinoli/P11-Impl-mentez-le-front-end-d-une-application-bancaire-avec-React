@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { logout } from '../../redux/Actions/authActions';
+import { updateUserData } from '../../redux/Actions/editActions'; // Importez l'action pour mettre à jour les données utilisateur
 import ArgentBankLogo from '../../assets/img/argentBankLogo.webp';
 import axios from 'axios'; 
 
@@ -9,16 +10,18 @@ import './header.scss';
 
 function Header() {
   const isConnected = useSelector(state => state.auth.isConnected);
-
-    // useState pour stocker le username.
-  const [username, setUsername] = useState(""); 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [userData, setUserData] = useState({
+    email: '',
+    firstName: '',
+    lastName: '',
+    userName: ''
+  });
+
 // Récupére le token depuis le sessionStorage
   const token = sessionStorage.getItem('token');
-
-  console.log ("valeur token header:" , token)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,11 +29,16 @@ function Header() {
         try {
           const response = await axios.post('http://localhost:3001/api/v1/user/profile', {}, {
             headers: {
-              'Authorization': `Bearer ${token}`
+              'Authorization': `Bearer ${sessionStorage.getItem('token')}`
             }
           });
           if (response.status === 200) {
-            setUsername(response.data.body.email);
+            const { email, firstName, lastName, userName } = response.data.body;
+            setUserData({ email, firstName, lastName, userName });
+
+            // Dispatch des données de l'utilisateur pour les mettre à jour dans le state
+            dispatch(updateUserData({ userData: { email, firstName, lastName, userName } }));
+
           } else {
             console.error('Failed to fetch user profile');
           }
@@ -41,7 +49,7 @@ function Header() {
     };
   
     fetchData(); // Appel la fonction fetchData directement
-  }, [isConnected, token]); // Dépendances de l'effet principal :  Inclus le token et la valeur de isConnected dans les dépendances de l'effet
+  }, [isConnected, token, dispatch]); // Dépendances de l'effet principal :  Inclus le token et la valeur de isConnected dans les dépendances de l'effet
   
 
   
@@ -81,8 +89,9 @@ function Header() {
             <>
               <div className="main-nav-item">
                 <i className="fa fa-user-circle"></i>
+
                 {/* Utilisation du nom d'utilisateur récupéré */}
-                <span>{username}</span> 
+                <span>{userData.userName}</span> 
               </div>
               <div className="main-nav-item" onClick={handleLogout}>
                 <i className="fa fa-sign-out"></i>
