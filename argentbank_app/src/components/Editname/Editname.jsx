@@ -24,7 +24,7 @@ function Editname() {
                     />
                 </div>
                 <div className="input-wrapper">
-                    <label htmlFor="password">Firt Name</label>
+                    <label htmlFor="password">First Name</label>
                     <input 
                     className="input-disabled"
                     type="text" 
