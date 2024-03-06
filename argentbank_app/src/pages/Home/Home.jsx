@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Banner from '../../components/Banner/Banner.jsx';
 import Feature from '../../components/Feature/Feature.jsx';
 import featuresData from '../../assets/data/featuresData.js';

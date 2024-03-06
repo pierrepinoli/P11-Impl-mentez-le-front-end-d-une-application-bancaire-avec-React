@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { login, logfail, logout } from '../../redux/Actions/authActions';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+
+import { login, logfail, logout } from '../../redux/Actions/authActions';
 
 import './signin.scss';
 
@@ -29,7 +30,6 @@ function Signin({ login, logfail, logout }) {
       setRememberChecked(false);
     }
   }, []);
-
 
   const handleSignIn = async (e) => {
     e.preventDefault();
@@ -59,14 +59,15 @@ function Signin({ login, logfail, logout }) {
           localStorage.removeItem('username');
           localStorage.removeItem('password');
         }
-         // Stocker le token dans le sessionStorage
-         sessionStorage.setItem('token', token);
-        
+         // Stockage du token dans le sessionStorage
+         sessionStorage.setItem('token', token);  
       }
     } catch (error) {
+
       // Gestion de l'erreur 400 "utilisateur non trouvé"
       if (error.response && error.response.status === 400) {
         setError('Identifiants incorrects');
+        
         // Gestion de l'erreur 500 "Erreur interne du serveur"
       } else if (error.response && error.response.status === 500) {
         setError('Erreur interne du serveur. Veuillez réessayer plus tard.');
@@ -114,7 +115,8 @@ function Signin({ login, logfail, logout }) {
             <label htmlFor="remember-me">Remember me</label>
           </div>
           <button type="submit" className="sign-in-button">Sign In</button>
-          {/* Affichage de l'erreur */}
+
+          {/* Affichage du message d'erreur */}
           {error && <div className="input-error"><span className="input-error-txt">{error}</span></div>}
         </form>
       </section>

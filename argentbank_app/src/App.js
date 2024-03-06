@@ -15,6 +15,9 @@ import Footer from "./components/Footer/Footer.jsx";
 function App({ isConnected }) {
   return (
     <Router>
+
+      {/* ajout d'une div pour assurer l'etalement de la page sur tout l'ecran */}
+      <div className="wrapper">
       <Header isConnected={isConnected} logout={logout} />
       <Routes>
 
@@ -25,6 +28,7 @@ function App({ isConnected }) {
         <Route path="*" element={<Error />} />
       </Routes>
       <Footer />
+      </div>
     </Router>
   );
 }
