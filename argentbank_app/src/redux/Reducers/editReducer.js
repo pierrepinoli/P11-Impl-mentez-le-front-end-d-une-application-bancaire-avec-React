@@ -14,13 +14,20 @@ const initialState = {
 
 const editReducer = createReducer(initialState, (builder) => {
     builder
+
+    // mise à jour du username
       .addCase(editUsername, (state, action) => {
-        // Mettre à jour le nom d'utilisateur
         state.userData.userName = action.payload.userName;
         state.status = "SUCCEEDED";
       })
+
+      // mise à jour des données utilisateur
+      .addCase(updateUserData, (state, action) => {
+        state.userData = action.payload.userData;
+      })
+
+      // Réinitialise les données de l'utilisateur lors de la déconnexion
       .addCase(logout, (state) => {
-        // Réinitialise les données de l'utilisateur lors de la déconnexion
         state.userData = {
           email: '',
           password: '',
@@ -30,10 +37,7 @@ const editReducer = createReducer(initialState, (builder) => {
         };
         state.status = null;
       })
-      .addCase(updateUserData, (state, action) => {
-        // Mettre à jour toutes les données de l'utilisateur
-        state.userData = action.payload.userData;
-      });
+
   });
   
 export default editReducer;

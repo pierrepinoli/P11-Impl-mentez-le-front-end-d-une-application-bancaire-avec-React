@@ -8,6 +8,7 @@ import { Navigate } from 'react-router-dom';
 import Collapse from '../../components/Collapse/Collapse';
 import Editname from '../../components/Editname/Editname';
 import accountsData from '../../assets/data/accountsData.json';
+
 import './dashboard.scss';
 
 function Dashboard({ isConnected }) {
@@ -26,6 +27,8 @@ function Dashboard({ isConnected }) {
           
           // Dispatch des données de l'utilisateur pour les mettre à jour dans le state
           dispatch(updateUserData({ userData: { email, firstName, lastName, userName } }));
+          console.log("reponse data body" , response.data.body);
+          
         } else {
           console.error('Failed to fetch user profile');
         }

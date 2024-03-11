@@ -15,7 +15,7 @@ function Editname() {
   
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-
+    
         try {
             // Effectuer la requête API PUT pour mettre à jour le nom d'utilisateur
             await Axios.put(
@@ -23,18 +23,21 @@ function Editname() {
                 { userName: username },
                 {
                     headers: {
-                        Authorization: token,
+                        Authorization: `Bearer ${token}`,
                         'Content-Type': 'application/json'
                     }
                 }
             );
-
+    
             // Dispatchez l'action pour mettre à jour le nom d'utilisateur dans le state Redux
             dispatch(editUsername({ userName: username }));
-
-            
+            console.log (userData.userName)
         } catch (error) {
-            console.error('Error updating username:', error);
+            if (error.response && error.response.status === 401) {
+                console.error('Unauthorized: Invalid token or missing credentials.');
+            } else {
+                console.error('Error updating username:', error);
+            }
         }
     };
 
@@ -53,7 +56,7 @@ function Editname() {
                     <input
                         type="text"
                         id="username"
-                        value={username}
+                        value={userData.username}
                         onChange={(e) => setUsername(e.target.value)}
                         required
                     />

@@ -24,5 +24,4 @@ const authReducer = createReducer(initialState, (builder) => {
     
 });
 
-
 export default authReducer;

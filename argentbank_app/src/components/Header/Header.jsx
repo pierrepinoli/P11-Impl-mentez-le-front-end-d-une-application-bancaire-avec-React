@@ -9,6 +9,7 @@ function Header() {
   const isConnected = useSelector(state => state.auth.isConnected);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const username = useSelector(state => state.edit.userData?.userName);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -21,10 +22,10 @@ function Header() {
       // et redirection vers la page d'accueil
       handleLogout();
       navigate('/');
-
-      console.log("Dashboard__isConnected", isConnected);
-    }
+        }
   };
+  
+  console.log("username header :" , username)
 
   return (
     <header>
@@ -47,7 +48,7 @@ function Header() {
                 <i className="fa fa-user-circle"></i>
 
                 {/* Utilisation du nom d'utilisateur récupéré */}
-                <span>METTRE A JOUR</span> 
+                <span>{username}</span> 
 
 
               </div>
