@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Axios from 'axios';
+
 import { editUsername } from '../../redux/Actions/editActions';
 
-function Editname() {
+function Editname({ onEditNameSubmit }) {
     // cherche les données de l'utilisateur depuis le state Redux
     const userData = useSelector(state => state.edit.userData);
     const dispatch = useDispatch();
@@ -32,6 +33,7 @@ function Editname() {
             // Dispatchez l'action pour mettre à jour le nom d'utilisateur dans le state Redux
             dispatch(editUsername({ userName: username }));
             console.log (userData.userName)
+
         } catch (error) {
             if (error.response && error.response.status === 401) {
                 console.error('Unauthorized: Invalid token or missing credentials.');
@@ -39,17 +41,13 @@ function Editname() {
                 console.error('Error updating username:', error);
             }
         }
+
+        // Appeler la fonction de rappel pour indiquer que l'édition est terminée
+      onEditNameSubmit();
     };
 
     return (
-        <section className="header">
-        <div className="welcome-content">
-            <h2>Welcome back<br />{userData.userName} !</h2>
-            <button className="editname-button">Edit Name</button>
-        </div>
-
-        <div className="editname-content">
-
+        <section>
             <form onSubmit={handleFormSubmit}> 
                 <div className="input-wrapper">
                     <label htmlFor="username">Username</label>
@@ -85,7 +83,6 @@ function Editname() {
                 <button type="submit" className="validate-button">Valider</button>
                 
                 </form>
-            </div>
         </section>
     )                    
 }
