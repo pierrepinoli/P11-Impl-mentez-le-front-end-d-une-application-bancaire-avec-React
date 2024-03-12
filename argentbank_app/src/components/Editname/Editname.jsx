@@ -42,7 +42,7 @@ function Editname({ onEditNameSubmit }) {
             }
         }
 
-        // Appeler la fonction de rappel pour indiquer que l'édition est terminée
+        // Appel de la fonction de rappel pour indiquer que l'édition est terminée
       onEditNameSubmit();
     };
 
@@ -82,7 +82,10 @@ function Editname({ onEditNameSubmit }) {
                 
                 <button type="submit" className="validate-button">Valider</button>
                 
+                
                 </form>
+
+                <button onClick={onEditNameSubmit} className="validate-button">Annuler</button>
         </section>
     )                    
 }
