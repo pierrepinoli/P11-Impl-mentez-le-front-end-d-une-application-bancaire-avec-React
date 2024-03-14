@@ -16,7 +16,7 @@ function App({ isConnected }) {
   return (
     <Router>
 
-      {/* ajout d'une div pour assurer l'etalement de la page sur tout l'ecran */}
+      {/* ajout d'une div pour assurer l'etalement de la page sur tout l'écran */}
       <div className="wrapper">
       <Header isConnected={isConnected} logout={logout} />
       <Routes>

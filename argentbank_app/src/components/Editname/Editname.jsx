@@ -12,13 +12,13 @@ function Editname({ onEditNameSubmit }) {
     const token = sessionStorage.getItem('token');
     
     // Utilise les données de l'utilisateur pour pré-remplir le champ de l'username
-    const [username, setUsername] = useState(userData.userName || ''); // Utilisez une valeur vide par défaut si le nom d'utilisateur est null
+    const [username, setUsername] = useState(userData.userName || ''); // Utilise une valeur vide par défaut si le nom d'utilisateur est null
   
     const handleFormSubmit = async (e) => {
         e.preventDefault();
     
         try {
-            // Effectuer la requête API PUT pour mettre à jour le nom d'utilisateur
+            // Effectue la requête API PUT pour mettre à jour le nom d'utilisateur
             await Axios.put(
                 'http://localhost:3001/api/v1/user/profile',
                 { userName: username },
@@ -30,7 +30,7 @@ function Editname({ onEditNameSubmit }) {
                 }
             );
     
-            // Dispatchez l'action pour mettre à jour le nom d'utilisateur dans le state Redux
+            // Dispatch l'action pour mettre à jour le nom d'utilisateur dans le state Redux
             dispatch(editUsername({ userName: username }));
             console.log (userData.userName)
 
@@ -79,12 +79,10 @@ function Editname({ onEditNameSubmit }) {
                         disabled
                         />
                 </div>
-                
                 <button type="submit" className="validate-button">Valider</button>
-                
-                
                 </form>
 
+                {/* bouton d'annulation de la fenetre d'edition */}
                 <button onClick={onEditNameSubmit} className="validate-button">Annuler</button>
         </section>
     )                    

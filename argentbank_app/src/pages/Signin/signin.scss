@@ -27,15 +27,15 @@
     gap: 10px;
 }
 
+.sign-in-content h2 {
+    font-weight: bold;
+}
+
 .sign-in-content form {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-
-// .sign-in-icon {
-//     font-size: 5rem;
-// }
 
 .input-remember {
     display: flex;
@@ -75,10 +75,6 @@
 .input-checkbox:hover {
     cursor: pointer;
 }
-
-// .input-error {
-//     display: none;
-// }
 
 .input-error-txt {
     color: red;

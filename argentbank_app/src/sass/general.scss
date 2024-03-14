@@ -1,6 +1,6 @@
-@import "./reset.scss";
+@import "./partials/reset.scss";
 
-@import "./main.scss/";
+@import "./partials/main.scss/";
 
 @import "../components/Banner/banner.scss";
 
@@ -12,4 +12,4 @@
 @import "../pages/Dashboard/dashboard.scss";
 @import "../pages/Error/error.scss";
 
-@import "./media_queries.scss";
+@import "./partials/media_queries.scss";

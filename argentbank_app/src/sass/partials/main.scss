@@ -9,9 +9,7 @@ html {
 .wrapper {
     display: grid;
     grid-template-rows: auto 1fr auto;
-    /* Le contenu, le footer, et un espace vide prennent chacun une part égale de l'espace vertical */
     min-height: 100vh;
-    /* Le wrapper s'étend au minimum sur toute la hauteur de la fenêtre */
 }
 
 body {

@@ -17,14 +17,11 @@ function Header() {
 
   const handleLogoClick = () => {  
       navigate('/');
-        
   };
 
   const handleIconUserClick = () => {
       navigate('/dashboard');
   }
-  
-  console.log("username header :" , username)
 
   return (
     <header>
@@ -51,8 +48,6 @@ function Header() {
 
                 {/* Utilisation du nom d'utilisateur récupéré */}
                 <span>{username}</span> 
-
-
               </div>
 
               {/* deconnection au clic sur logout */}
