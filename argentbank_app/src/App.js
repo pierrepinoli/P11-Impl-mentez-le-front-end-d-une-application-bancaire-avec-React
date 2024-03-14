@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { logout } from './redux/Actions/authActions';
@@ -22,7 +22,7 @@ function App({ isConnected }) {
       <Routes>
 
         {/* Si l'utilisateur est connecté : navigate vers dashboard sinon page d'acceuil */}
-        <Route path="/" element={isConnected ? <Navigate to="/dashboard" /> : <Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/sign-in" element={<Signin />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="*" element={<Error />} />

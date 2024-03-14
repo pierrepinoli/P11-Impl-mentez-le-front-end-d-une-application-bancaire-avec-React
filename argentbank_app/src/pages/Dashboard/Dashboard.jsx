@@ -59,6 +59,7 @@ function Dashboard({ isConnected }) {
 
   <section className="editname-wrapper">
         {isEditingName ? (
+          // appel du formulaire editname 
           <div className="editname-content">
           <Editname onEditNameSubmit={handleEditNameSubmit} />
           </div>

@@ -54,7 +54,7 @@ function Editname({ onEditNameSubmit }) {
                     <input
                         type="text"
                         id="username"
-                        value={userData.username}
+                        value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         required
                     />

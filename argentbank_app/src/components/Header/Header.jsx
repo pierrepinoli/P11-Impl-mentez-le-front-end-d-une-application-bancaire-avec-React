@@ -15,15 +15,14 @@ function Header() {
     dispatch(logout());
   };
 
-  const handleLogoClick = () => {
-    if (isConnected) {
-
-      // Si l'utilisateur est connecté et qu'il clique sur le logo, déconnection
-      // et redirection vers la page d'accueil
-      handleLogout();
+  const handleLogoClick = () => {  
       navigate('/');
-        }
+        
   };
+
+  const handleIconUserClick = () => {
+      navigate('/dashboard');
+  }
   
   console.log("username header :" , username)
 
@@ -44,6 +43,9 @@ function Header() {
         <div className='main-nav-menu'>
           {isConnected ? (
             <>
+
+            {/* redirection sur le dashboard au clic du username */}
+              <NavLink to="/dashboard" onClick={handleIconUserClick}>
               <div className="main-nav-item">
                 <i className="fa fa-user-circle"></i>
 
@@ -52,6 +54,9 @@ function Header() {
 
 
               </div>
+
+              {/* deconnection au clic sur logout */}
+              </NavLink>
               <div className="main-nav-item" onClick={handleLogout}>
                 <i className="fa fa-sign-out"></i>
                 <span>Logout</span>
