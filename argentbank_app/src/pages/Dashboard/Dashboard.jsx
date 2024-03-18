@@ -18,6 +18,8 @@ function Dashboard({ isConnected }) {
   const [isEditingName, setIsEditingName] = useState(false);
 
   useEffect(() => {
+
+    // appel API pour récuperer les données de l'utilisateur
     const fetchUserData = async () => {
       try {
         const response = await axios.post('http://localhost:3001/api/v1/user/profile', {}, {
@@ -59,7 +61,7 @@ function Dashboard({ isConnected }) {
 
   <section className="editname-wrapper">
         {isEditingName ? (
-          // appel du formulaire editname 
+          // appel du formulaire editname sinon appel du composant welcome back 
           <div className="editname-content">
           <Editname onEditNameSubmit={handleEditNameSubmit} />
           </div>
@@ -89,6 +91,7 @@ function Dashboard({ isConnected }) {
 }
 
 // Mapper l'état Redux à des props pour le composant Dashboard
+// le composant Dashboard aura accès à la prop isConnected, qui sera mise à jour chaque fois que l'état Redux change.
 const mapStateToProps = (state) => ({
   isConnected: state.auth ? state.auth.isConnected : false,
 });

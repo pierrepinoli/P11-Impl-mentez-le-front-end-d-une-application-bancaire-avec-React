@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 import authReducer from './authReducer';
 import editReducer from './editReducer';
-// Importez d'autres réducteurs ici si nécessaire
 
+
+//combine les reducers et raccourci le nom des reducers dans des constantes
 const rootReducer = combineReducers({
   auth: authReducer,
   edit: editReducer,
-  // Ajoutez d'autres réducteurs ici si nécessaire
 });
 
 export default rootReducer;

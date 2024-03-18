@@ -50,7 +50,7 @@ function Header() {
                 <span>{username}</span> 
               </div>
 
-              {/* deconnection au clic sur logout */}
+              {/* déconnection au clic sur logout */}
               </NavLink>
               <div className="main-nav-item" onClick={handleLogout}>
                 <i className="fa fa-sign-out"></i>

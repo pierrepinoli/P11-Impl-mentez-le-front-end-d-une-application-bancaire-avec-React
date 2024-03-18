@@ -2,7 +2,6 @@ import React from 'react';
 
 function Feature(props) {
     const { imageSource, title, description, alt } = props;
-
     return (
         <div className="feature-item">
             <img src={imageSource} alt={alt} className="feature-icon" />

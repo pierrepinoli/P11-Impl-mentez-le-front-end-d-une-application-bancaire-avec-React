@@ -16,7 +16,7 @@ function App({ isConnected }) {
   return (
     <Router>
 
-      {/* ajout d'une div pour assurer l'etalement de la page sur tout l'écran */}
+      {/* ajout d'une div pour assurer l'étalement de la page sur tout l'écran */}
       <div className="wrapper">
       <Header isConnected={isConnected} logout={logout} />
       <Routes>
@@ -33,8 +33,12 @@ function App({ isConnected }) {
   );
 }
 
-// vérifie l'état de isConnected : si state.auth est undefined, alors isConnected sera défini sur false
+
+// Mapper l'état Redux à des props pour le composant Dashboard
+// le composant Dashboard aura accès à la prop isConnected, qui sera mise à jour chaque fois que l'état Redux change.
 const mapStateToProps = (state) => ({
+  
+  // vérifie l'état de isConnected : si state.auth est undefined, alors isConnected sera défini sur false
   isConnected: state.auth ? state.auth.isConnected : false,
 });
 

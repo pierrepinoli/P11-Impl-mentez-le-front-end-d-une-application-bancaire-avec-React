@@ -2,7 +2,7 @@ import { useSelector  } from 'react-redux';
 
 function WelcomeBack() {
     
-    // cherche les données de l'utilisateur depuis le state
+    // importe les données de l'utilisateur depuis le state
     const userData = useSelector(state => state.edit.userData);
     return (
         <section>      

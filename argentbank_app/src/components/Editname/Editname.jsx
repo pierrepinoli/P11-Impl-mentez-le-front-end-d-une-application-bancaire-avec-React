@@ -5,10 +5,12 @@ import Axios from 'axios';
 import { editUsername } from '../../redux/Actions/editActions';
 
 function Editname({ onEditNameSubmit }) {
+    
     // cherche les données de l'utilisateur depuis le state Redux
     const userData = useSelector(state => state.edit.userData);
     const dispatch = useDispatch();
-    // recuperation du token dans le sessions storage
+
+    // récuperation du token dans le sessions storage
     const token = sessionStorage.getItem('token');
     
     // Utilise les données de l'utilisateur pour pré-remplir le champ de l'username
