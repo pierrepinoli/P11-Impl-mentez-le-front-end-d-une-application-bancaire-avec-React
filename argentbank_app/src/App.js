@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { logout } from './redux/Actions/authActions';
@@ -18,13 +18,15 @@ function App({ isConnected }) {
 
       {/* ajout d'une div pour assurer l'étalement de la page sur tout l'écran */}
       <div className="wrapper">
+
+        {/* Si l'utilisateur est connecté : fait apparaitre l'option logout */}
       <Header isConnected={isConnected} logout={logout} />
       <Routes>
-
-        {/* Si l'utilisateur est connecté : navigate vers dashboard sinon page d'acceuil */}
         <Route path="/" element={<Home />} />
         <Route path="/sign-in" element={<Signin />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+
+        {/* Si l'utilisateur n'est pas connecté : redirection vers la page d'acceuil */}
+        <Route path="/dashboard" element={isConnected ? <Dashboard /> : <Navigate to="/"/>} />
         <Route path="*" element={<Error />} />
       </Routes>
       <Footer />
@@ -37,7 +39,7 @@ function App({ isConnected }) {
 // Mapper l'état Redux à des props pour le composant Dashboard
 // le composant Dashboard aura accès à la prop isConnected, qui sera mise à jour chaque fois que l'état Redux change.
 const mapStateToProps = (state) => ({
-  
+
   // vérifie l'état de isConnected : si state.auth est undefined, alors isConnected sera défini sur false
   isConnected: state.auth ? state.auth.isConnected : false,
 });
